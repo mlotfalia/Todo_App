@@ -8,10 +8,13 @@ export default function AddTodo() {
   const inputTodoHandler = (e) => setInputTodo(e.target.value);
   const addTodoHandler = () => {
     if (inputTodo.length > 0) {
-   dispatch(  addTodo({
-        text: inputTodo,
-        done: false,
-      })));
+      dispatch(
+        addTodo({
+          id: Date.now(),
+          text: inputTodo,
+          done: true,
+        })
+      );
       setInputTodo("");
     }
   };
@@ -20,7 +23,7 @@ export default function AddTodo() {
       <div class="flex mt-4">
         <input
           onChange={inputTodoHandler}
-          value = {inputTodo}
+          value={inputTodo}
           class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
           placeholder="Add Todo"
         />

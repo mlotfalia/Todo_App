@@ -1,9 +1,9 @@
-import ShowTodoList from "./showTodoList";
+import TodoList from "./todoList";
 
 export default function TodoPage() {
   return (
     <>
-      <ShowTodoList />
+      <TodoList />
     </>
   );
 }
