@@ -2,13 +2,30 @@ import { deleteTodo, toggleDoneTodo } from "../store/slices/todosSlice";
 
 import EditItem from "./editItem";
 import EditTodo from "./editTodo";
+import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 export default function ShowTodoItem({ todo }) {
   const dispatch = useDispatch();
-  const todoDeleteHandler = () => dispatch(deleteTodo(todo.id));
-  const toggleDoneTodoHandler = () => dispatch(toggleDoneTodo({ id: todo.id }));
+  const todoDeleteHandler = async () => {
+    let res = await axios.delete(
+      `https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List/${todo.id}`
+    );
+    console.log(res);
+    dispatch(deleteTodo(todo.id));
+  };
+  const toggleDoneTodoHandler = async () => {
+    try {
+      await axios.put(
+        `https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List/${todo.id}`,
+        { ...todo, done: !todo.done }
+      );
+      dispatch(toggleDoneTodo({ id: todo.id }));
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const [editTodo, setEditTodo] = useState(false);
   return !editTodo ? (
     <div className="flex mb-4 items-center">
