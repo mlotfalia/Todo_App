@@ -5,7 +5,7 @@ export default function EditTodo({ setEditTodo }) {
     <>
       <button
         onClick={editTodoHandler}
-        class="flex-no-shrink p-1 border-2 rounded text-teal border-teal  hover:bg-teal"
+        class="flex-no-shrink p-1  border-2 rounded text-teal border-teal hover:text-white text-yellow-400 border-yellow-400 hover:bg-yellow-400"
       >
         edit
       </button>

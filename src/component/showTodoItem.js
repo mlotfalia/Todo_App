@@ -14,8 +14,8 @@ export default function ShowTodoItem({ todo }) {
     <div className="flex mb-4 items-center">
       <p
         className={`mr-auto ${
-          todo.done ? "line-trought text-green-600" : "text-gray-700"
-        } `}
+          todo.done ? "line-through text-green-600" : "text-gray-700"
+        }`}
       >
         {todo.text}
       </p>
@@ -29,7 +29,7 @@ export default function ShowTodoItem({ todo }) {
       ) : (
         <button
           onClick={toggleDoneTodoHandler}
-          className="p-1 px-2 ml-4 mr-2 border-2 rounded hover:text-white text-green-600 border-green-600 hover:bg-green-600"
+          className="p-1 px-2 ml-4 mr-2 border-2 rounded hover:text-white text-green-400 border-green-400 hover:bg-green-400"
         >
           Done
         </button>
@@ -37,7 +37,7 @@ export default function ShowTodoItem({ todo }) {
       <EditTodo setEditTodo={setEditTodo} />
       <button
         onClick={todoDeleteHandler}
-        className="p-1 px-2 ml-2 border-2 rounded text-red-600 border-red-600 hover:text-white hover:bg-red-600"
+        className="p-1 px-2 ml-4 mr-2 border-2 rounded hover:text-white text-red-600 border-red-600 hover:bg-red-600"
       >
         Remove
       </button>

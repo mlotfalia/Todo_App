@@ -12,7 +12,7 @@ export default function AddTodo() {
         addTodo({
           id: Date.now(),
           text: inputTodo,
-          done: true,
+          done: false,
         })
       );
       setInputTodo("");
@@ -29,7 +29,7 @@ export default function AddTodo() {
         />
         <button
           onClick={addTodoHandler}
-          class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal"
+          class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-gray hover:bg-teal"
         >
           Add
         </button>
