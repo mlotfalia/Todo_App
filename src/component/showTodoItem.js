@@ -43,6 +43,6 @@ export default function ShowTodoItem({ todo }) {
       </button>
     </div>
   ) : (
-    <EditItem setEditTodo={setEditTodo} />
+    <EditItem setEditTodo={setEditTodo} todo={todo} />
   );
 }
