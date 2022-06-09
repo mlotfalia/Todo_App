@@ -8,15 +8,12 @@ export default function EditItem({ setEditTodo, todo }) {
     text: todo.text,
     done: todo.done,
   });
-  let todoText;
+
   const dispatch = useDispatch();
   const handleInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    console.log(value);
 
-    todoText = value;
-    console.log(todoText);
     setEditTodoItem({ ...todo, [name]: value });
   };
 
@@ -40,20 +37,28 @@ export default function EditItem({ setEditTodo, todo }) {
 
   return (
     <>
-      <input
-        id="text"
-        onChange={handleInput}
-        value={editTodoItem.text}
-        name="text"
-        class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
-        placeholder="Add Todo"
-      />
-      <button className="btn-success btn-sm" onClick={handleSubmit}>
-        بروزرسانی
-      </button>
-      <button className="btn-cancel btn-sm" onClick={() => setEditTodo(false)}>
-        انصراف
-      </button>
+      <div class="flex mt-4">
+        <input
+          id="text"
+          onChange={handleInput}
+          value={editTodoItem.text}
+          name="text"
+          class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
+        />
+
+        <button
+          className="lex-no-shrink p-2 border-2 rounded text-teal border-teal  hover:bg-teal"
+          onClick={handleSubmit}
+        >
+          بروزرسانی
+        </button>
+        <button
+          className="lex-no-shrink p-2 border-2 rounded text-teal border-teal  hover:bg-teal"
+          onClick={() => setEditTodo(false)}
+        >
+          انصراف
+        </button>
+      </div>
     </>
   );
 }
