@@ -14,15 +14,15 @@ export default function EditItem({ setEditTodo, todo }) {
   const handleInput = async (e) => {
     let name = e.target.name;
     let value = e.target.value;
+    setEditTodoItem({ ...todo, [name]: value });
     try {
       await axios.put(
         `https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List/${todo.id}`,
-        { ...todo, text: todo.text }
+        { ...editTodoItem, text: editTodoItem.text }
       );
     } catch (e) {
       console.log(e);
     }
-    setEditTodoItem({ ...todo, [name]: value });
   };
 
   const handleSubmit = () => {
