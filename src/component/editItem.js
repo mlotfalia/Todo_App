@@ -47,13 +47,13 @@ export default function EditItem({ setEditTodo, todo }) {
 
   return (
     <>
-      <div class="flex mt-4">
+      <div className="flex mt-4">
         <input
           id="text"
           onChange={handleInput}
           value={editTodoItem.text}
           name="text"
-          class="shadow appearance-none border rounded w-full py-2 px-3 m-3 text-grey-darker"
+          className="shadow appearance-none border rounded w-full py-2 px-3 m-3 text-grey-darker"
         />
 
         <button

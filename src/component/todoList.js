@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-
 import AddTodo from "./addTodo";
 import ShowTodoItem from "./showTodoItem";
 import axios from "axios";
@@ -8,15 +7,18 @@ import { useEffect } from "react";
 
 export default function ShowTodoList() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    getTodo();
-  }, []);
+
   const getTodo = async () => {
     let res = await axios.get(
       "https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List"
     );
     dispatch(setTodo(res.data.data));
   };
+  useEffect(() => {
+    getTodo();
+      // eslint-disable-next-line
+  }, []);
+
   const todos = useSelector((state) => state.todos.list);
   return (
     <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
@@ -26,8 +28,8 @@ export default function ShowTodoList() {
           <AddTodo />
         </div>
         <div>
-          {todos.map((todo) => (
-            <ShowTodoItem todo={todo} />
+          {todos.map((todo , index) => (
+            <ShowTodoItem key={index} todo={todo} />
           ))}
         </div>
       </div>

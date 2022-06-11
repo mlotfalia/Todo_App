@@ -26,16 +26,16 @@ export default function AddTodo() {
   };
   return (
     <>
-      <div class="flex mt-4">
+      <div className="flex mt-4">
         <input
           onChange={inputTodoHandler}
           value={inputTodo}
-          class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
+          className="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
           placeholder="Add Todo"
         />
         <button
           onClick={addTodoHandler}
-          class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-gray hover:bg-teal"
+          className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-gray hover:bg-teal"
         >
           Add
         </button>
