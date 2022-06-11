@@ -10,18 +10,23 @@ export default function AddTodo() {
   const addTodoHandler = async () => {
     if (inputTodo.length > 0) {
       try {
-        let res = await axios.post(
+        const res = await axios.post(
           "https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List",
           {
             text: inputTodo,
             done: false,
           }
         );
-        dispatch(addTodo(res.data));
+        dispatch(addTodo(res.data.data));
         setInputTodo("");
       } catch (e) {
         console.log(e);
       }
+    }
+  };
+  const keyDownHandler = (e) => {
+    if (e.key === "Enter") {
+      addTodoHandler();
     }
   };
   return (
@@ -32,6 +37,7 @@ export default function AddTodo() {
           value={inputTodo}
           className="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
           placeholder="Add Todo"
+          onKeyDown={keyDownHandler}
         />
         <button
           onClick={addTodoHandler}
