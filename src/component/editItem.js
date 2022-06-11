@@ -4,56 +4,37 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 export default function EditItem({ setEditTodo, todo }) {
-  const [editTodoItem, setEditTodoItem] = useState({
-    id: todo.id,
-    text: todo.text,
-    done: todo.done,
-  });
 
   const dispatch = useDispatch();
-  const handleInput = async (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    setEditTodoItem({ ...todo, [name]: value });
-  };
+  const [editTodoItem, setEditTodoItem] = useState(todo);
 
   const handleSubmit = async () => {
     try {
-      await axios.put(
+      const res = await axios.put(
         `https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List/${todo.id}`,
         { ...editTodoItem, text: editTodoItem.text }
+
       );
+      dispatch(
+        editTodo(res.data.data)
+      );
+
     } catch (e) {
       console.log(e);
     }
-
-    setEditTodoItem((prevState) => {
-      let todos = prevState.map((todoItem) =>
-        todoItem.id === todo.id ? todo : todoItem
-      );
-      return todos;
-    });
-
-    dispatch(
-      editTodo({
-        id: editTodoItem.id,
-        text: editTodoItem.text,
-        done: editTodo.done,
-      })
-    );
-
     setEditTodo(false);
+
   };
 
   return (
     <>
-      <div class="flex mt-4">
+      <div className="flex mt-4">
         <input
           id="text"
-          onChange={handleInput}
+          onChange={(e) => setEditTodoItem({ ...todo, text: e.target.value })}
           value={editTodoItem.text}
           name="text"
-          class="shadow appearance-none border rounded w-full py-2 px-3 m-3 text-grey-darker"
+          className="shadow appearance-none border rounded w-full py-2 px-3 m-3 text-grey-darker"
         />
 
         <button

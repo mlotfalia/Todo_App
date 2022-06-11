@@ -10,6 +10,8 @@ export default function ShowTodoList() {
   const dispatch = useDispatch();
   useEffect(() => {
     getTodo();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const getTodo = async () => {
     let res = await axios.get(
@@ -27,7 +29,7 @@ export default function ShowTodoList() {
         </div>
         <div>
           {todos.map((todo) => (
-            <ShowTodoItem todo={todo} />
+            <ShowTodoItem key={todo.id} todo={todo} />
           ))}
         </div>
       </div>

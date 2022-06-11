@@ -10,32 +10,40 @@ export default function AddTodo() {
   const addTodoHandler = async () => {
     if (inputTodo.length > 0) {
       try {
-        let res = await axios.post(
+        const res = await axios.post(
           "https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List",
           {
             text: inputTodo,
             done: false,
           }
         );
-        dispatch(addTodo(res.data));
+        dispatch(addTodo(res.data.data));
         setInputTodo("");
       } catch (e) {
         console.log(e);
       }
     }
   };
+  // Add todo with press enter key
+  const keyDownHandler = (e) => {
+    if (e.key === 'Enter') {
+      addTodoHandler()
+    }
+  }
   return (
     <>
-      <div class="flex mt-4">
+      <div className="flex mt-4">
         <input
           onChange={inputTodoHandler}
           value={inputTodo}
-          class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
+          className="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
           placeholder="Add Todo"
+          onKeyDown={keyDownHandler}
+
         />
         <button
           onClick={addTodoHandler}
-          class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-gray hover:bg-teal"
+          className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-gray hover:bg-teal"
         >
           Add
         </button>
