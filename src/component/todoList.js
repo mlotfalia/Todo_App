@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+
 import AddTodo from "./addTodo";
 import ShowTodoItem from "./showTodoItem";
 import axios from "axios";
@@ -16,7 +17,7 @@ export default function ShowTodoList() {
   };
   useEffect(() => {
     getTodo();
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const todos = useSelector((state) => state.todos.list);
@@ -25,10 +26,10 @@ export default function ShowTodoList() {
       <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-3xl border">
         <div className="mb-4">
           <h1 className="text-gray-700 text-3xl font-bold">Todo List</h1>
-          <AddTodo />
+          <AddTodo todo={todos} />
         </div>
         <div>
-          {todos.map((todo , index) => (
+          {todos.map((todo, index) => (
             <ShowTodoItem key={index} todo={todo} />
           ))}
         </div>
