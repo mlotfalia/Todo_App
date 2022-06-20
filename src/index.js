@@ -7,8 +7,12 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import axios from "axios";
 import reportWebVitals from "./reportWebVitals";
 
+axios.defaults.baseURL = `https://62a1c619efe73bc8bc250c23.endapi.io`;
+//if there is not response after 5 second, cancel the request
+axios.defaults.timeout = 5000;
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

@@ -10,9 +10,7 @@ export default function ShowTodoList() {
   const dispatch = useDispatch();
 
   const getTodo = async () => {
-    let res = await axios.get(
-      "https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List"
-    );
+    let res = await axios.get("/Todo%20List");
     dispatch(setTodo(res.data.data));
   };
   useEffect(() => {

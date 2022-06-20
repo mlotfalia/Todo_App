@@ -9,18 +9,13 @@ import { useState } from "react";
 export default function ShowTodoItem({ todo }) {
   const dispatch = useDispatch();
   const todoDeleteHandler = async () => {
-    let res = await axios.delete(
-      `https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List/${todo.id}`
-    );
+    let res = await axios.delete(`/Todo%20List/${todo.id}`);
     console.log(res);
     dispatch(deleteTodo(todo.id));
   };
   const toggleDoneTodoHandler = async () => {
     try {
-      await axios.put(
-        `https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List/${todo.id}`,
-        { ...todo, done: !todo.done }
-      );
+      await axios.put(`/Todo%20List/${todo.id}`, { ...todo, done: !todo.done });
       dispatch(toggleDoneTodo({ id: todo.id }));
     } catch (e) {
       console.log(e);

@@ -10,13 +10,10 @@ export default function AddTodo() {
   const addTodoHandler = async () => {
     if (inputTodo.length > 0) {
       try {
-        const res = await axios.post(
-          "https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List",
-          {
-            text: inputTodo,
-            done: false,
-          }
-        );
+        const res = await axios.post("/Todo%20List", {
+          text: inputTodo,
+          done: false,
+        });
         dispatch(addTodo(res.data.data));
         setInputTodo("");
       } catch (e) {

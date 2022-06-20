@@ -15,10 +15,10 @@ export default function EditItem({ setEditTodo, todo }) {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.put(
-        `https://62a1c619efe73bc8bc250c23.endapi.io/Todo%20List/${todo.id}`,
-        { ...editTodoItem, text: editTodoItem.text }
-      );
+      const res = await axios.put(`/Todo%20List/${todo.id}`, {
+        ...editTodoItem,
+        text: editTodoItem.text,
+      });
       dispatch(editTodo(res.data.data));
     } catch (e) {
       console.log(e);
