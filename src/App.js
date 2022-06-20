@@ -1,3 +1,4 @@
+import Footer from "./component/layouts/footer";
 import TodoPage from "./component/index";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
       <div className="App">
         <TodoPage />
       </div>
+      <Footer />
     </>
   );
 }

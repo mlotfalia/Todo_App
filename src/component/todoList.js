@@ -1,20 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 import AddTodo from "./addTodo";
 import ShowTodoItem from "./showTodoItem";
 import axios from "axios";
 import { setTodo } from "../store/slices/todosSlice";
-import { useEffect } from "react";
 
 export default function ShowTodoList() {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState();
 
   const getTodo = async () => {
-    let res = await axios.get("/Todo%20List");
+    let res = await axios.get(`/Todo%20List`);
     dispatch(setTodo(res.data.data));
   };
   useEffect(() => {
+    setLoading(true);
     getTodo();
+    setLoading(false);
+
     // eslint-disable-next-line
   }, []);
 
@@ -27,9 +31,11 @@ export default function ShowTodoList() {
           <AddTodo />
         </div>
         <div>
-          {todos.map((todo, index) => (
-            <ShowTodoItem key={index} todo={todo} />
-          ))}
+          {loading ? (
+            <h2>data is loading</h2>
+          ) : (
+            todos.map((todo, index) => <ShowTodoItem key={index} todo={todo} />)
+          )}
         </div>
       </div>
     </div>
