@@ -18,7 +18,6 @@ export default function ShowTodoList() {
     setLoading(true);
     getTodo();
     setLoading(false);
-
     // eslint-disable-next-line
   }, []);
 
